@@ -52,6 +52,7 @@ func main() {
 		if err := hlaeserver.Start(); err != nil {
 			panic(err)
 		}
+		log.Println("Started HLAE Server")
 	}()
 
 	ctx := context.Background()
