@@ -90,7 +90,7 @@ func ApplicationDidTerminateHandler(ctx context.Context, client *streamdeck.Clie
 	}
 	log.Println("ApplicationDidTerminateHandler:", p)
 	if p.Application == "csgo.exe" {
-		launched = true
+		launched = false
 	}
 
 	return nil
