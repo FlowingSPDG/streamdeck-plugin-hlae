@@ -1,0 +1,106 @@
+<head>
+  <meta charset="utf-8" />
+  <title>HLAE RCON</title>
+  <script src="common.js"></script>
+  <link rel="stylesheet" href="./sdpi.css">
+</head>
+
+<body>
+  <!-- Wrapper starts from here... -->
+  <div class="sdpi-wrapper">
+
+    <!-- HLAE STATUS... -->
+    <!-- TODO -->
+    
+    <!-- command -->
+    <div class="sdpi-item">
+      <div class="sdpi-item-label">Command</div>
+      <input class="sdpi-item-value" id="command" onchange="onCommandChange()">
+    </div>
+
+    <!-- Save -->
+    <div class="sdpi-item">
+      <div class="sdpi-item-label">Save</div>
+      <button class="sdpi-item-value" id="button_save" onclick="saveSettings()">Click to save</button>
+    </div>
+
+    <script>
+      // mirv_pgl variable definitions
+      var mirvpgl = {
+        command: "",
+        connected: false
+      }
+      
+      var pluginAction = null,
+        uuid = '',
+        context = "";
+
+      if ($SD) {
+        $SD.on('connected', function (jsonObj) {
+          init()
+          console.log("connected")
+          console.log(jsonObj)
+          uuid = jsonObj['uuid'];
+          if (jsonObj.hasOwnProperty('actionInfo')) {
+            pluginAction = jsonObj.actionInfo['action'];
+            context = jsonObj.actionInfo['context'];
+
+            if (jsonObj.actionInfo.payload.hasOwnProperty("settings")){
+              // Input
+              if(jsonObj.actionInfo.payload.settings.command != "") {
+                mirvpgl.command = jsonObj.actionInfo.payload.settings.command
+              }
+            }
+            updateElements()
+          }
+        });
+
+        $SD.on("sendToPropertyInspector", function (jsonObj) {
+          console.log("sendToPropertyInspector", jsonObj)
+          if(!jsonObj.payload){
+            return
+          }
+          if(jsonObj.event == "sendToPropertyInspector"){
+            
+          }
+          else if(jsonObj.event == "didReceiveSettings"){
+            console.log("didReceiveSettings", jsonObj.payload)
+          }
+        })
+
+
+        $SD.on("didReceiveGlobalSettings", function (jsonObj) {
+          console.log("didReceiveGlobalSettings")
+        })
+      };
+      
+      function init(){
+      }
+            
+      function onCommandChange() {
+        mirvpgl.command = document.getElementById('command').value
+      }
+
+      // update HTML elements according to "mirvpgl" object
+      function updateElements(){
+        console.log("updateElements")
+        document.getElementById('command').value = mirvpgl.command
+      }
+
+      function saveSettings(){
+        console.log("Saving setting",mirvpgl)
+        if ($SD && $SD.connection){
+          $SD.api.sendToPlugin(uuid,pluginAction,{
+            "command":mirvpgl.command,
+          })
+        }
+      }
+
+      function getSettings(){
+        console.log("Getting setting")
+        if ($SD && $SD.connection){
+          $SD.api.getSettings(context)
+        }
+      }
+    </script>
+  </body>

@@ -1,0 +1,8 @@
+{
+  "Description": "HLAEのmirv_pglコマンド経由でCS:GOクライアントにコマンドを送信するプラグインです。", 
+  "Name": "HLAE RCON", 
+  "dev.flowingspdg.hlae.command": {
+    "Name": "コマンド送信", 
+    "Tooltip": "CS:GOクライアントにコマンドを送信します。"
+  }
+}

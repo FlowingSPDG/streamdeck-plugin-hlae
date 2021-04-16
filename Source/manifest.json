@@ -1,0 +1,41 @@
+{
+  "Actions": [{
+      "Name": "Send Command",
+      "States": [
+        {
+          "Image": "images/icon",
+          "TitleAlignment": "middle",
+          "FontSize": "24"
+        }
+      ],
+      "PropertyInspectorPath": "inspector/mirvpgl.html",
+      "SupportedInMultiActions": true,
+      "Tooltip": "send command",
+      "UUID": "dev.flowingspdg.hlae.command",
+      "Icon": "images/icon" 
+    }
+  ],
+  "SDKVersion": 2,
+  "Author": "Shugo Kawamura", 
+  "CodePath": "hlae_std.exe", 
+  "PropertyInspectorPath": "inspector/mirvpgl.html", 
+  "Description": "Communicate CS:GO Client via mirv_pgl", 
+  "Name": "HLAE RCON", 
+  "Icon": "images/icon", 
+  "URL": "https://flowing.tokyo", 
+  "Version": "0.1",
+  "OS": [
+    {
+        "Platform": "windows", 
+        "MinimumVersion" : "10"
+    }
+  ],
+  "Software": {
+    "MinimumVersion" : "4.1"
+  },
+  "ApplicationsToMonitor": {
+    "windows": [
+      "csgo.exe"
+    ]
+  }
+}

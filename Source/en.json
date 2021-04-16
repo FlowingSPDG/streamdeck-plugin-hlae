@@ -1,0 +1,8 @@
+{
+    "Description": "Plugin that communicates to CS:GO Client via mirv_pgl command.", 
+    "Name": "HLAE RCON", 
+    "dev.flowingspdg.hlae.command": {
+      "Name": "Send Command", 
+      "Tooltip": "Send command to CS:GO Client"
+    }
+  }
