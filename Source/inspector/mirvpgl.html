@@ -11,6 +11,17 @@
 
     <!-- HLAE STATUS... -->
     <!-- TODO -->
+
+    <!-- Handshake command -->
+    <details class="message info">
+      <summary>Welcome to HLAE Plugin!</summary>
+      <h4>Connect:</h4>
+      <p>You need to execute following command to connect CSGO:</p>
+      <span class="sdpi-item-value textarea">
+        <input class="sdpi-item-value" id="connect_command" value='mirv_pgl url "ws://localhost:65535/std;mirv_pgl start' readonly></input>
+        <button class="sdpi-item-value" onclick='document.getElementById("connect_command").select();document.execCommand("copy");'>Click to copy</button>
+      </span>
+    </details>
     
     <!-- command -->
     <div class="sdpi-item">
@@ -47,7 +58,7 @@
 
             if (jsonObj.actionInfo.payload.hasOwnProperty("settings")){
               // Input
-              if(jsonObj.actionInfo.payload.settings.command != "") {
+              if (typeof (jsonObj.actionInfo.payload.settings.command) === "string") {
                 mirvpgl.command = jsonObj.actionInfo.payload.settings.command
               }
             }

@@ -23,7 +23,7 @@
   "Name": "HLAE RCON", 
   "Icon": "images/icon", 
   "URL": "https://flowing.tokyo", 
-  "Version": "0.1",
+  "Version": "0.2",
   "OS": [
     {
         "Platform": "windows", 
